@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A fast, private chat interface powered by Qwen."
+    />
+    <meta name="color-scheme" content="dark light" />
+    <title>Qwen Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Chat history">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true">Q</div>
+          <div>
+            <p class="brand-name">Qwen Chat</p>
+            <p class="brand-caption">Personal assistant</p>
+          </div>
+        </div>
+
+        <button class="new-chat-button" id="newChatButton" type="button">
+          <span aria-hidden="true">＋</span>
+          New chat
+        </button>
+
+        <div class="history-heading">
+          <span>Recent</span>
+          <button
+            class="icon-button subtle"
+            id="clearHistoryButton"
+            type="button"
+            aria-label="Clear chat history"
+            title="Clear history"
+          >
+            ⌫
+          </button>
+        </div>
+        <div class="history-list" id="historyList"></div>
+
+        <div class="sidebar-footer">
+          <div class="privacy-note">
+            <span class="privacy-dot" aria-hidden="true"></span>
+            History stays on this device
+          </div>
+        </div>
+      </aside>
+
+      <div class="main-column">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button
+              class="icon-button menu-button"
+              id="menuButton"
+              type="button"
+              aria-label="Open chat history"
+              aria-controls="sidebar"
+              aria-expanded="false"
+            >
+              ☰
+            </button>
+            <div>
+              <h1>Qwen 3</h1>
+              <div class="connection-status" id="connectionStatus" role="status">
+                <span class="status-dot"></span>
+                <span>Checking connection</span>
+              </div>
+            </div>
+          </div>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch to light mode"
+            title="Switch theme"
+          >
+            <span class="theme-icon" aria-hidden="true">☼</span>
+          </button>
+        </header>
+
+        <main class="chat-main" id="chatMain">
+          <div class="messages" id="messages" aria-live="polite">
+            <section class="welcome" id="welcomePanel">
+              <div class="welcome-orb" aria-hidden="true">
+                <span>Q</span>
+              </div>
+              <p class="eyebrow">YOUR AI THINKING PARTNER</p>
+              <h2>What can we explore?</h2>
+              <p class="welcome-copy">
+                Ask a question, shape an idea, or work through something complex.
+              </p>
+              <div class="suggestion-grid" aria-label="Suggested prompts">
+                <button class="suggestion" type="button" data-prompt="Help me make a focused plan for the week.">
+                  <span class="suggestion-icon warm" aria-hidden="true">✦</span>
+                  <span>
+                    <strong>Make a plan</strong>
+                    <small>Turn a goal into clear steps</small>
+                  </span>
+                  <span class="suggestion-arrow" aria-hidden="true">→</span>
+                </button>
+                <button class="suggestion" type="button" data-prompt="Explain a difficult concept to me in simple language.">
+                  <span class="suggestion-icon violet" aria-hidden="true">◎</span>
+                  <span>
+                    <strong>Learn something</strong>
+                    <small>Make a complex idea click</small>
+                  </span>
+                  <span class="suggestion-arrow" aria-hidden="true">→</span>
+                </button>
+                <button class="suggestion" type="button" data-prompt="Brainstorm five creative approaches for my next project.">
+                  <span class="suggestion-icon blue" aria-hidden="true">◇</span>
+                  <span>
+                    <strong>Brainstorm ideas</strong>
+                    <small>Find a fresh direction</small>
+                  </span>
+                  <span class="suggestion-arrow" aria-hidden="true">→</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </main>
+
+        <footer class="composer-wrap">
+          <form class="composer" id="chatForm">
+            <label class="sr-only" for="messageInput">Message Qwen</label>
+            <textarea
+              id="messageInput"
+              rows="1"
+              maxlength="10000"
+              placeholder="Message Qwen..."
+              autocomplete="off"
+              required
+            ></textarea>
+            <button
+              class="send-button"
+              id="sendButton"
+              type="submit"
+              aria-label="Send message"
+              disabled
+            >
+              <span aria-hidden="true">↑</span>
+            </button>
+          </form>
+          <p class="composer-hint">Enter to send <span>·</span> Shift + Enter for a new line</p>
+        </footer>
+      </div>
+    </div>
+
+    <div class="sidebar-scrim" id="sidebarScrim"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
